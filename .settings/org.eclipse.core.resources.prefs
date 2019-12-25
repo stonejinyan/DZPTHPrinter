@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/com/otracking/bean/DZPTH.java=UTF-8
+encoding//src/com/otracking/bean/MO.java=UTF-8
+encoding//src/com/otracking/bean/MOTable.java=UTF-8
+encoding//src/com/otracking/webservice/GetDZPInfoByAOPService.java=UTF-8
+encoding//src/com/otracking/webservice/GetDZPInfoByAOPServiceService.java=UTF-8
+encoding//src/com/otracking/webservice/GetDZPInfoByAOPServiceServiceLocator.java=UTF-8
+encoding//src/com/otracking/webservice/GetDZPInfoByAOPServiceSoapBindingStub.java=UTF-8
+encoding//src/com/otracking/webservice/GetMOInfoByIDService.java=UTF-8
+encoding//src/com/otracking/webservice/GetMOInfoByIDServiceService.java=UTF-8
+encoding//src/com/otracking/webservice/GetMOInfoByIDServiceServiceLocator.java=UTF-8
+encoding//src/com/otracking/webservice/GetMOInfoByIDServiceSoapBindingStub.java=UTF-8
