@@ -16,7 +16,7 @@ import javax.print.attribute.standard.PrinterName;
 import com.otracking.bean.DZPTH;
 import com.otracking.bean.MOTable;
 
-public class ZplPrinter {
+public class ZplPrinterBackup {
 	private String printerURI = null;// 打印机完整路径
 	private PrintService printService = null;// 打印机服务
 	private byte[] dotFont;
@@ -35,7 +35,7 @@ public class ZplPrinter {
 	public static void Print(MOTable mo, DZPTH[] dzpths) {
 		MyPrintService.LogText.setText(new Date() + "开始打印" + "\n" + MyPrintService.LogText.getText());
 		// ZplPrinter p = new ZplPrinter("ZDesigner GT800 (EPL) (副本 3)");
-		ZplPrinter p = new ZplPrinter("ZDesigner GT800");
+		ZplPrinterBackup p = new ZplPrinterBackup("ZDesigner GT800");
 		// 1.打印单个条码
 		String bar0 = mo.getName();// 条码内容
 		String bar0Zpl1 = "^FO180,35^BY2,1.0,70^BCN,,Y,N,N^FD${data}^FS";// 条码样式模板
@@ -68,23 +68,61 @@ public class ZplPrinter {
 		MyPrintService.LogText.setText(new Date() + "上半部分完成" + "\n" + MyPrintService.LogText.getText());
 		if (dzpths != null) {
 			MyPrintService.LogText.setText(new Date() + "图号不为空，请核对数量！" + "\n" + MyPrintService.LogText.getText());
-			for (int j = 0; j < 6 && j < dzpths.length; j++) {
-				p.setText(dzpths[j].getHeadingline() + ":" + dzpths[j].getDescription(), left, (j + 8) * h + h_offset,
-				        30, 30, 15, 1, 1, 24);
+			for (int j = 0; j < 12 && j < dzpths.length; j++) {
+				if (j % 2 == 0) {
+					p.setText(dzpths[j].getHeadingline() + ":" + dzpths[j].getDescription(), left,
+					        (j / 2 + 8) * h + h_offset, 30, 30, 15, 1, 1, 24);
+				} else {
+					p.setText(dzpths[j].getHeadingline() + ":" + dzpths[j].getDescription(), left + l_offset,
+					        (j / 2 + 8) * h + h_offset, 30, 30, 15, 1, 1, 24);
+				}
 			}
+			/*
+			 * p.setText(dzpths[0].getHeadingline() + ":" + dzpths[0].getDescription(),
+			 * left, 8 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[1].getHeadingline() + ":" + dzpths[1].getDescription(), left
+			 * + l_offset, 8 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[2].getHeadingline() + ":" + dzpths[2].getDescription(),
+			 * left, 9 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[3].getHeadingline() + ":" + dzpths[3].getDescription(), left
+			 * + l_offset, 9 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[4].getHeadingline() + ":" + dzpths[4].getDescription(),
+			 * left, 10 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[5].getHeadingline() + ":" + dzpths[5].getDescription(), left
+			 * + l_offset, 10 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[6].getHeadingline() + ":" + dzpths[6].getDescription(),
+			 * left, 11 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[7].getHeadingline() + ":" + dzpths[7].getDescription(), left
+			 * + l_offset, 11 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[8].getHeadingline() + ":" + dzpths[8].getDescription(),
+			 * left, 12 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[9].getHeadingline() + ":" + dzpths[9].getDescription(), left
+			 * + l_offset, 12 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[10].getHeadingline() + ":" + dzpths[10].getDescription(),
+			 * left, 13 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 * p.setText(dzpths[11].getHeadingline() + ":" + dzpths[11].getDescription(),
+			 * left + l_offset, 13 * h + h_offset, 30, 30, 15, 1, 1, 24);
+			 */
 			p.setText("Order Tracking", left + 230, 15 * h + h_offset - 15, 28, 28, 15, 1, 1, 24);
 			String zpl = p.getZpl();
 			System.out.println("执行打印");
 			p.print(zpl);// 打印
 			p.resetZpl();
-			if (dzpths.length > 6) {
-				for (int i = 0; i < ((double) (dzpths.length - 6)) / 13; i++) {
+			if (dzpths.length > 12) {
+				for (int i = 0; i < ((double) (dzpths.length - 12)) / 26; i++) {
 					p.setBarcode(bar0, bar0Zpl1);
-					for (int j = 0; j < 13 && (6 + i * 13 + j < dzpths.length); j++) {
-
-						p.setText(
-						        dzpths[6 + i * 13 + j].getHeadingline() + ":" + dzpths[6 + i * 13 + j].getDescription(),
-						        left, (j + 1) * h + h_offset, 30, 30, 15, 1, 1, 24);
+					for (int j = 0; j < 26 && (12 + i * 26 + j < dzpths.length); j++) {
+						if (j % 2 == 0) {
+							p.setText(
+							        dzpths[12 + i * 26 + j].getHeadingline() + ":"
+							                + dzpths[12 + i * 26 + j].getDescription(),
+							        left, (j / 2 + 1) * h + h_offset, 30, 30, 15, 1, 1, 24);
+						} else {
+							p.setText(
+							        dzpths[12 + i * 26 + j].getHeadingline() + ":"
+							                + dzpths[12 + i * 26 + j].getDescription(),
+							        left + l_offset, (j / 2 + 1) * h + h_offset, 30, 30, 15, 1, 1, 24);
+						}
 					}
 					p.setText("Order Tracking", left + 230, 15 * h + h_offset - 15, 28, 28, 15, 1, 1, 24);
 					zpl = p.getZpl();
@@ -111,7 +149,7 @@ public class ZplPrinter {
 	 * 
 	 * @param printerURI 打印机路径
 	 */
-	public ZplPrinter(String printerURI) {
+	public ZplPrinterBackup(String printerURI) {
 		this.printerURI = printerURI;
 		// 加载字体
 		File file = new File("C://ts24.lib");

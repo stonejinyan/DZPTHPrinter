@@ -22,7 +22,7 @@ public class GetMOInfoByIDServiceServiceLocator extends org.apache.axis.client.S
     }
 
     // Use to get a proxy class for GetMOInfoByIDService
-    private java.lang.String GetMOInfoByIDService_address = "http://localhost:8080/Otracking/services/GetMOInfoByIDService";
+    private java.lang.String GetMOInfoByIDService_address = "http://10.177.118.249:8888/Otracking/services/GetMOInfoByIDService";
 
     public java.lang.String getGetMOInfoByIDServiceAddress() {
         return GetMOInfoByIDService_address;

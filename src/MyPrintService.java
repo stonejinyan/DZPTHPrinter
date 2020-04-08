@@ -14,7 +14,7 @@ public class MyPrintService {
 
 	public static void main(String args[]) throws IOException {
 		// s.setDaemon(true);// 设置线程为后台线程，tomcat不会被hold,启动后依然一直监听。
-		JFrame frame = new JFrame("Order Tracking打印程序1.2");
+		JFrame frame = new JFrame("Order Tracking打印程序（单列回路）");
 		// Setting the width and height of frame
 		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

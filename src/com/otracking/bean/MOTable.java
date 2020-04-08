@@ -8,6 +8,8 @@
 package com.otracking.bean;
 
 public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializable {
+    private java.lang.String SO;
+
     private java.lang.String WBS;
 
     private java.lang.String batch_name;
@@ -34,6 +36,7 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
            java.lang.String customID,
            java.lang.String description,
            java.lang.String dms_id,
+           int ekitting,
            int id,
            java.lang.String name,
            int no,
@@ -43,6 +46,7 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
            java.util.Calendar schedule_starttime,
            int scheduling,
            java.lang.String securityCode,
+           java.lang.String SO,
            java.lang.String WBS,
            java.lang.String batch_name,
            int order_id,
@@ -58,6 +62,7 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
             customID,
             description,
             dms_id,
+            ekitting,
             id,
             name,
             no,
@@ -67,6 +72,7 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
             schedule_starttime,
             scheduling,
             securityCode);
+        this.SO = SO;
         this.WBS = WBS;
         this.batch_name = batch_name;
         this.order_id = order_id;
@@ -75,6 +81,26 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
         this.processline_id = processline_id;
         this.product_bigtype_name = product_bigtype_name;
         this.product_type_name = product_type_name;
+    }
+
+
+    /**
+     * Gets the SO value for this MOTable.
+     * 
+     * @return SO
+     */
+    public java.lang.String getSO() {
+        return SO;
+    }
+
+
+    /**
+     * Sets the SO value for this MOTable.
+     * 
+     * @param SO
+     */
+    public void setSO(java.lang.String SO) {
+        this.SO = SO;
     }
 
 
@@ -249,6 +275,9 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
         __equalsCalc = obj;
         boolean _equals;
         _equals = super.equals(obj) && 
+            ((this.SO==null && other.getSO()==null) || 
+             (this.SO!=null &&
+              this.SO.equals(other.getSO()))) &&
             ((this.WBS==null && other.getWBS()==null) || 
              (this.WBS!=null &&
               this.WBS.equals(other.getWBS()))) &&
@@ -280,6 +309,9 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
         }
         __hashCodeCalc = true;
         int _hashCode = super.hashCode();
+        if (getSO() != null) {
+            _hashCode += getSO().hashCode();
+        }
         if (getWBS() != null) {
             _hashCode += getWBS().hashCode();
         }
@@ -311,6 +343,12 @@ public class MOTable  extends com.otracking.bean.MO  implements java.io.Serializ
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://bean.otracking.com", "MOTable"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("SO");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://bean.otracking.com", "SO"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("WBS");
         elemField.setXmlName(new javax.xml.namespace.QName("http://bean.otracking.com", "WBS"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));

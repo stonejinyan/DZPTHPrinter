@@ -20,6 +20,8 @@ public class MO  implements java.io.Serializable {
 
     private java.lang.String dms_id;
 
+    private int ekitting;
+
     private int id;
 
     private java.lang.String name;
@@ -48,6 +50,7 @@ public class MO  implements java.io.Serializable {
            java.lang.String customID,
            java.lang.String description,
            java.lang.String dms_id,
+           int ekitting,
            int id,
            java.lang.String name,
            int no,
@@ -63,6 +66,7 @@ public class MO  implements java.io.Serializable {
            this.customID = customID;
            this.description = description;
            this.dms_id = dms_id;
+           this.ekitting = ekitting;
            this.id = id;
            this.name = name;
            this.no = no;
@@ -192,6 +196,26 @@ public class MO  implements java.io.Serializable {
      */
     public void setDms_id(java.lang.String dms_id) {
         this.dms_id = dms_id;
+    }
+
+
+    /**
+     * Gets the ekitting value for this MO.
+     * 
+     * @return ekitting
+     */
+    public int getEkitting() {
+        return ekitting;
+    }
+
+
+    /**
+     * Sets the ekitting value for this MO.
+     * 
+     * @param ekitting
+     */
+    public void setEkitting(int ekitting) {
+        this.ekitting = ekitting;
     }
 
 
@@ -402,6 +426,7 @@ public class MO  implements java.io.Serializable {
             ((this.dms_id==null && other.getDms_id()==null) || 
              (this.dms_id!=null &&
               this.dms_id.equals(other.getDms_id()))) &&
+            this.ekitting == other.getEkitting() &&
             this.id == other.getId() &&
             ((this.name==null && other.getName()==null) || 
              (this.name!=null &&
@@ -446,6 +471,7 @@ public class MO  implements java.io.Serializable {
         if (getDms_id() != null) {
             _hashCode += getDms_id().hashCode();
         }
+        _hashCode += getEkitting();
         _hashCode += getId();
         if (getName() != null) {
             _hashCode += getName().hashCode();
@@ -508,6 +534,12 @@ public class MO  implements java.io.Serializable {
         elemField.setXmlName(new javax.xml.namespace.QName("http://bean.otracking.com", "dms_id"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("ekitting");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://bean.otracking.com", "ekitting"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");

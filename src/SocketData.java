@@ -47,9 +47,17 @@ public class SocketData implements Runnable {
 			// MyPrintService.LogText.getText());
 			if (!tem.equals("favicon.ico")) {
 				MOTable mo = getMOInfo(Integer.parseInt(tem));
-				MyPrintService.LogText
-				        .setText(new Date() + "MO:" + mo.getName() + "\n" + MyPrintService.LogText.getText());
-				ZplPrinter.Print(mo, getDZPInfo(mo.getDms_id(), mo.getOrder_id()));
+				if (mo == null) {
+					MyPrintService.LogText
+					        .setText(new Date() + "MO:" + tem + "不存在！\n" + MyPrintService.LogText.getText());
+				} else {
+					MyPrintService.LogText
+					        .setText(new Date() + "MO:" + mo.getName() + "\n" + MyPrintService.LogText.getText());
+					// 双列端子排
+					// ZplPrinterBackup.Print(mo, getDZPInfo(mo.getDms_id(), mo.getOrder_id()));
+					// 单列端子排
+					ZplPrinter.Print(mo, getDZPInfo(mo.getDms_id(), mo.getOrder_id()));
+				}
 			}
 			PrintWriter pw = new PrintWriter(out, true);
 			pw.write("HTTP/1.1 200 OK");
